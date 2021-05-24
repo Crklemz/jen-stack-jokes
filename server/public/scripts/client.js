@@ -6,13 +6,40 @@ function onReady() {
     console.log('DOM ready');
 
     //click listeners
-   // $('#addJokeButton').on('click', addJoke);
+    $('#addJokeButton').on('click', addJoke);
 
     getJokes();
 }
 
+//funtion to take in data from DOM, send to server, then print new array on DOM
+let jokeObject = {};
 
+function addJoke() {
+    console.log('in addJoke');
+    //get info from DOM
+    let who = $('#whoseJokeIn').val();
+    let question = $('#questionIn').val();
+    let punchline = $('#punchlineIn').val();
 
+    //create object from info gatherd from DOM for transfer to server
+    jokeObject.who = who;
+    jokeObject.question = question;
+    jokeObject.punchline = punchline;
+    console.log('showing jokeObject', jokeObject);
+
+    //post to server
+    $.ajax({
+        method: 'POST',
+        url: '/addingjoke',
+        data: jokeObject,
+    }).then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+        console.log(error);
+        alert('something went wrong with POST')
+    }) //end ajax post
+    getJokes();
+} //end addJoke
 
 
 
@@ -35,6 +62,8 @@ function getJokes() {
 
 function renderDom(info) {
     console.log('in renderDom');
+    //clear DOM so we don't double up the list
+    $('#outputDiv').text('');
     //loop through the info we get back and append to the DOM
     for (let i = 0; i < info.length; i++) {
         $('#outputDiv').append(`
