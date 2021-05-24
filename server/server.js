@@ -44,8 +44,8 @@ app.listen(PORT, () => {
 app.post('/addingjoke', (req, res) => {
   
   jokeObject = req.body;
-  jokes.push(req.body);
-  console.log('posting to /addingjoke');
+  jokes.push(jokeObject);
+  console.log('posting to /addingjoke', jokeObject);
   res.sendStatus(201);
   
 })

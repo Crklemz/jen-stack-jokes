@@ -17,14 +17,14 @@ let jokeObject = {};
 function addJoke() {
     console.log('in addJoke');
     //get info from DOM
-    let who = $('#whoseJokeIn').val();
-    let question = $('#questionIn').val();
-    let punchline = $('#punchlineIn').val();
+    let whoseJoke = $('#whoseJokeIn').val();
+    let jokeQuestion = $('#questionIn').val();
+    let punchLine = $('#punchlineIn').val();
 
     //create object from info gatherd from DOM for transfer to server
-    jokeObject.who = who;
-    jokeObject.question = question;
-    jokeObject.punchline = punchline;
+    jokeObject.whoseJoke = whoseJoke;
+    jokeObject.jokeQuestion = jokeQuestion;
+    jokeObject.punchLine = punchLine;
     console.log('showing jokeObject', jokeObject);
 
     //post to server
